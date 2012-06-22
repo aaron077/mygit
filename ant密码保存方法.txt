@@ -1,0 +1,15 @@
+
+个人建议：
+1 使用expect脚本在验证用户密码的时候自动输入密码，expect脚本其它用户没有权限获取到
+2 在ant脚本执行过程中手工输入密码，ant脚本中不保存明文密码
+<target name="get_password">
+        <input message="Enter Your Password:>" addproperty="password">
+                <handler classname="org.apache.tools.ant.input.SecureInputHandler" />
+        </input>
+</target>
+<target name="create_tmp_dir">
+        <sshexec host="${host}"
+        username="${username}"
+        password="${password}"
+        command="mkdir ${tmp_dir}" />
+</target>
